@@ -1,0 +1,30 @@
+version: '3'
+services:
+  app:
+    build: .
+    environment:
+      NODE_ENV: development
+      APP_NAME: mutant
+      ELASTICSEARCH_HOST: 'elasticsearch'
+      ELASTICSEARCH_PORT: 9200
+    command: node_modules/.bin/nodemon --exec npm start 
+    ports:
+      - "3000:3000"
+    tty: true    
+    volumes:
+      - .:/home/app/node_docker
+      - /home/app/node_docker/node_modules
+    depends_on:    
+      - elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.7.2
+    container_name: elastic
+    environment:
+      - cluster.name=docker-cluster
+      #- bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - TZ=America/Sao_Paulo
+    ports:
+      - "9200:9200"
+      - "9300:9300"
