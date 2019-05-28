@@ -4,12 +4,12 @@
 link https://docs.docker.com/install/
 
 # Executar na API
-docker-compose -f "docker-compose.yml" up -d --build
-docker-compose up
+`docker-compose -f "docker-compose.yml" up -d --build` <br>
+`docker-compose up`
 
 # API
-Node 12.2
-Elasticsearch 6.7.2
+- Node 12.2
+- Elasticsearch 6.7.2
 
 http://localhost:3000/users
 
