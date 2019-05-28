@@ -1,8 +1,7 @@
 const axios = require('axios');
-const log = require('../log').default;
+const log = require('../log');
 const config = require('config');
 const _ = require('lodash');
-
 
 class Users {
   constructor(request = axios) {
@@ -12,6 +11,8 @@ class Users {
   async getUsers(){
     let response;
     const resourceUsersUrl = config.get('recourses.users.url');
+
+    log.info('[Users] resourceUsersUrl %j:', resourceUsersUrl);
     try {                
         const { data } = await this.request.get(resourceUsersUrl);
         response = data;

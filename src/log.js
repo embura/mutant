@@ -3,9 +3,9 @@ const  { Writable }  = require('stream');
 const axios = require('axios');
 const endpointElastic = `http://${process.env.ELASTICSEARCH_HOST}:${process.env.ELASTICSEARCH_PORT}`;
 
-const elastic = axios.create({
-    baseURL: endpointElastic,
-  });
+
+
+  const appName = process.env.APP_NAME || 'APP_NAME';
 
 
 class StreamElastic extends Writable {
@@ -18,8 +18,15 @@ class StreamElastic extends Writable {
         
         const colorStrOut = new ColorStrOut();
         colorStrOut.color(messageJson);
-        
-        elastic.post(`/${process.env.APP_NAME}/_doc`,messageJson);
+
+        if (process.env.NODE_ENV === 'development'){
+
+            const elastic = axios.create({                
+                baseURL: endpointElastic,
+            });
+
+            elastic.post(`/${appName}/_doc`,messageJson);
+        }
         
         return true;
   }
@@ -75,4 +82,4 @@ const streams = [
     },
 ];
 
-module.exports = bunyan.createLogger({ streams, name: process.env.APP_NAME });
+module.exports = bunyan.createLogger({ streams, name: appName });

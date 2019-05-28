@@ -5,7 +5,7 @@ const log = require('../log');
 const routeSetup = UsersResource => {
   router.get('/users', async (req, res) => {
     const users = await UsersResource.getUsers();
-    log.debug('[RouterSetup] /users %j:', users);
+    log.info('[RouterSetup] /users %j:', users);
     res.json(users);
   });
   return router;
