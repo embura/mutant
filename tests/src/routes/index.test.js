@@ -8,11 +8,11 @@ describe('Users resource with nock', () => {
   let request;
   let users = [];
 
-  beforeAll( async () => {
+  beforeAll(async () => {
     const app = await setupApp();
     request = supertest(app);
     nock.cleanAll();
-    
+
     users = [
       {
         "id": 1,
@@ -20,21 +20,21 @@ describe('Users resource with nock', () => {
         "username": "Bret",
         "email": "Sincere@april.biz",
         "address": {
-            "street": "Kulas Light",
-            "suite": "Apt. 556",
-            "city": "Gwenborough",
-            "zipcode": "92998-3874",
-            "geo": {
-                "lat": "-37.3159",
-                "lng": "81.1496"
-            }
+          "street": "Kulas Light",
+          "suite": "Apt. 556",
+          "city": "Gwenborough",
+          "zipcode": "92998-3874",
+          "geo": {
+            "lat": "-37.3159",
+            "lng": "81.1496"
+          }
         },
         "phone": "1-770-736-8031 x56442",
         "website": "hildegard.org",
         "company": {
-            "name": "Romaguera-Crona",
-            "catchPhrase": "Multi-layered client-server neural-net",
-            "bs": "harness real-time e-markets"
+          "name": "Romaguera-Crona",
+          "catchPhrase": "Multi-layered client-server neural-net",
+          "bs": "harness real-time e-markets"
         }
       },
       {
@@ -43,21 +43,21 @@ describe('Users resource with nock', () => {
         "username": "Antonette",
         "email": "Shanna@melissa.tv",
         "address": {
-            "street": "Victor Plains",
-            "suite": "Suite 879",
-            "city": "Wisokyburgh",
-            "zipcode": "90566-7771",
-            "geo": {
-                "lat": "-43.9509",
-                "lng": "-34.4618"
-            }
+          "street": "Victor Plains",
+          "suite": "Suite 879",
+          "city": "Wisokyburgh",
+          "zipcode": "90566-7771",
+          "geo": {
+            "lat": "-43.9509",
+            "lng": "-34.4618"
+          }
         },
         "phone": "010-692-6593 x09125",
         "website": "anastasia.net",
         "company": {
-            "name": "Deckow-Crist",
-            "catchPhrase": "Proactive didactic contingency",
-            "bs": "synergize scalable supply-chains"
+          "name": "Deckow-Crist",
+          "catchPhrase": "Proactive didactic contingency",
+          "bs": "synergize scalable supply-chains"
         }
       }
     ]
@@ -66,7 +66,6 @@ describe('Users resource with nock', () => {
   afterEach(() => {
     nock.cleanAll();
   });
-  
 
   describe('route /', () => {
     describe('when a GET request is done to / endpoint', () => {
@@ -79,7 +78,7 @@ describe('Users resource with nock', () => {
 
         const response = await request.get('/users');
 
-        users.sort( (userA, userB) => userA.name > userB.name);
+        users.sort((userA, userB) => userB.id - userA.id);
 
         expect(response.body[0].name).toEqual(users[0].name);
       });
