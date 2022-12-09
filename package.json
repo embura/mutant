@@ -21,7 +21,7 @@
     "config": "^3.1.0",
     "elasticsearch": "^16.0.0",
     "es7": "npm:@elastic/elasticsearch@^7.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "lodash": "^4.17.20",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
